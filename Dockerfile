@@ -43,9 +43,9 @@ apk add --virtual build-dependencies \
     xz \
     zlib && \
 #
-mkdir -p /opt && \
-#
-#
+mkdir -p /opt
+
+RUN \
 # ==================================== Setup Windows corss compilers ====================================
 #
 ln -s /usr/bin/python3 /usr/bin/python && \
@@ -69,9 +69,9 @@ sed -i \
 make JOBS=$(nproc) && \
 #
 # remove everything except usr directory
-ls | grep -v usr | xargs rm -rf && \
-#
-#
+ls | grep -v usr | xargs rm -rf
+
+RUN \
 # # ==================================== Setup Linux corss compilers ====================================
 # #
 mkdir /root/src && \
@@ -102,10 +102,10 @@ rm -rf crosstool-ng-1.24.0 crosstool-ng-1.24.0.tar.bz2 && \
 mkdir /opt/crosstool-ng && \
 mv /root/x-tools/* /opt/crosstool-ng && \
 rm -rf /root/x-tools && \
-rm -rf /root/src && \
+rm -rf /root/src
 #
 #
 # ==================================== Cleanup ====================================
 #
-apk del build-dependencies && \
-rm -rf /var/cache/apk/*
+# apk del build-dependencies && \
+# rm -rf /var/cache/apk/*
