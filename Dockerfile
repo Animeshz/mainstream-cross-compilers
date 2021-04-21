@@ -45,31 +45,31 @@ apk add --virtual build-dependencies \
 #
 mkdir -p /opt
 
-RUN \
-# ==================================== Setup Windows corss compilers ====================================
-#
-ln -s /usr/bin/python3 /usr/bin/python && \
-#
-cd /opt && \
-git clone https://github.com/mxe/mxe.git && \
-cd mxe && \
-git checkout 29bdf5b0692e1032eb1aa648f39a22f923a3d29d && \
-#
-echo "" >> settings.mk && \
-sed -i \
-    -e "$ a MXE_TARGETS := x86_64-w64-mingw32.shared i686-w64-mingw32.shared" \
-    -e "$ a MXE_USE_CCACHE :=" \
-    -e "$ a MXE_PLUGIN_DIRS := plugins/gcc10" \
-    -e "$ a LOCAL_PKG_LIST := cc cmake" \
-    -e "$ a .DEFAULT local-pkg-list:" \
-    -e "$ a local-pkg-list: \$(LOCAL_PKG_LIST)" \
-    -e "/^$/d" \
-    settings.mk && \
-#
-make JOBS=$(nproc) && \
-#
-# remove everything except usr directory
-ls | grep -v usr | xargs rm -rf
+# RUN \
+# # ==================================== Setup Windows corss compilers ====================================
+# #
+# ln -s /usr/bin/python3 /usr/bin/python && \
+# #
+# cd /opt && \
+# git clone https://github.com/mxe/mxe.git && \
+# cd mxe && \
+# git checkout 29bdf5b0692e1032eb1aa648f39a22f923a3d29d && \
+# #
+# echo "" >> settings.mk && \
+# sed -i \
+#     -e "$ a MXE_TARGETS := x86_64-w64-mingw32.shared i686-w64-mingw32.shared" \
+#     -e "$ a MXE_USE_CCACHE :=" \
+#     -e "$ a MXE_PLUGIN_DIRS := plugins/gcc10" \
+#     -e "$ a LOCAL_PKG_LIST := cc cmake" \
+#     -e "$ a .DEFAULT local-pkg-list:" \
+#     -e "$ a local-pkg-list: \$(LOCAL_PKG_LIST)" \
+#     -e "/^$/d" \
+#     settings.mk && \
+# #
+# make JOBS=$(nproc) && \
+# #
+# # remove everything except usr directory
+# ls | grep -v usr | xargs rm -rf
 
 RUN \
 # # ==================================== Setup Linux corss compilers ====================================
