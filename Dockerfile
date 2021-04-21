@@ -92,8 +92,7 @@ sed -i \
     -e "$ a CT_ALLOW_BUILD_AS_ROOT=y" \
     -e "$ a CT_ALLOW_BUILD_AS_ROOT_SURE=y" \
     -e "$ a CT_DEBUG_CT_SAVE_STEPS=y" \
-    # temporary fix for https://github.com/crosstool-ng/crosstool-ng/issues/1479
-    -e "$ a CT_EXPAT_VERSION='2.3.0'" \
+    -e 's/\(^CT_EXPAT_VERSION="\).*"$/\12.3.0"/' \
     .config && \
 #
 ./ct-ng build.$(nproc) && \
