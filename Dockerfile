@@ -93,6 +93,7 @@ sed -i \
     -e "$ a CT_ALLOW_BUILD_AS_ROOT_SURE=y" \
     -e "$ a CT_DEBUG_CT_SAVE_STEPS=y" \
     -e 's/\(^CT_EXPAT_VERSION="\).*"$/\12.3.0"/' \
+    -e 's/\(^CT_LOG_PROGRESS_BAR.*\)/# \1/' \
     .config && \
 #
 ./ct-ng build.$(nproc) && \
