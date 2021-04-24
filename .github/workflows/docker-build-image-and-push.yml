@@ -18,7 +18,9 @@ jobs:
     steps:
       # https://github.com/actions/virtual-environments/issues/709#issuecomment-612569242
       - name: Increase space
-        run: rm -rf "/usr/local/share/boost" && rm -rf "$AGENT_TOOLSDIRECTORY"
+        run: |
+          rm -rf "/usr/local/share/boost"
+          rm -rf "$AGENT_TOOLSDIRECTORY"
 
       - name: Check out the repo
         uses: actions/checkout@v2
